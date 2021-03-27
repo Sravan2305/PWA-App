@@ -8,6 +8,11 @@
     <link rel="preconnect" href="https://fonts.gstatic.com">
     <link rel="manifest" href="./manifest.json">
     <link rel="shortcut icon" type="image/jpg" href="favicon.jpg"/>
+    <!-- <style>
+      #hoverer:hover {transform: scale(0.5);}
+    </style> -->
+    <!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"> -->
 <!-- <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,300;1,500&display=swap" rel="stylesheet"> -->
     <!-- <link rel="stylesheet" href="./styles.css"> -->
   </head>
@@ -17,12 +22,14 @@
       <img src="./favicon.jpg" alt="Nature" class="header_image">
     </div>
     <div class="parent-container">
+      <!-- <p id="hoverer" class="features one">Works without Internet</p> -->
       <p class="features one">Works without Internet</p>
       <p class="features two">Push Notifications</p>
       <p class="features three">Native App</p>
       <p class="features four">User friendly</p>
     </div>
-
+    <img id="add_to_home_screen" class="add_to_home_screen" src = "./images/add_circle-black-18dp.svg" alt="add to home screen"/>
     <script src="./index.js"></script>
+    <script src="./sw.js"></script>
   </body>
 </html>

@@ -7,19 +7,20 @@ body{
     /* font-size: 62.5%; */
     font-family: 'Poppins', sans-serif;
 }
-html{
+/* html{
 
-}
+} */
 .heading{
     display: inline-block;
     text-align: center;
     color: rgb(7, 7, 250);
     transition: transform ease-in 0.3s ;
+
 }
 .heading:hover{
     transform: scale(1.05) ;
     background-color:rgba(0,0,0,0.01);
-    filter: drop-shadow(1px 1px 1px rgba(0,0,0,0.1));
+    text-shadow: 4px 4px 4px #aaa;
 }
 .header{
     text-align: center;
@@ -82,4 +83,20 @@ animation: horizantal-slide 1s backwards;
     height: 2rem;
     width: 2rem;
     border-radius: 100%;
+}
+
+.add_to_home_screen{
+height: 2.5rem;
+    fill: rgb(240, 6, 6);
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    transition: transform ease-in .1s;
+}
+
+/* .add_to_home_screen:hover{
+    transform: scale(0.9);
+} */
+.add_to_home_screen:active{
+    transform: scale(0.8);
 }
