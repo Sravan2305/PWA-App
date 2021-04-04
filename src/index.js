@@ -59,3 +59,36 @@ button.addEventListener('click' , ()=>{
   } )
 })
 
+
+var post  = document.querySelector('#post')
+var box = document.querySelector('#box')
+const post_data = ()=>{
+        fetch('http://localhost:8000/user' , {
+            method:'POST',
+            body: JSON.stringify({name: document.getElementById("box").value }),
+        })
+        .then((res)=>console.log("success",res))
+        .catch(err=>console.log(err))
+}
+post.addEventListener('click' , ()=>{
+
+    console.log("vcal",document.getElementById("box").value)
+
+        if('serviceWorker' in navigator && 'SyncManager' in window)
+            {
+                navigator
+                .serviceWorker
+                .ready
+                .then(sw => {
+                  return  sw.sync.register('sync-new-post')
+                })
+                .catch(err=>{ 
+                    console.log("An error occured while posting the data")
+                    post_data()
+                })
+            }
+            else 
+                post_data()
+})
+
+

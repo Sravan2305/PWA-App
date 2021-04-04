@@ -39,35 +39,35 @@ self.addEventListener("activate", (event) => {
 });
 
 //only works for fetch apis.Doesnt work for axios req as axios is buit on top of ajax
-// self.addEventListener('fetch',(event)=>{
-//     // console.log("[Service Worker] Fetching something ...",event)
-//     event.respondWith(
-//         // fetch(event.request)
-//         caches
-//         .match(event.request)
-//         .then(responseFromCache=>{
-//             if(responseFromCache)
-//                 return responseFromCache
-//             else
-//                 return fetch(event.request)
-//                         .then(responseFromServer => {
-//                             return caches                   //if we do not return api data intercepted here is not sent to the componenets/html
-//                                     .open(dynamicCacheName)
-//                                     .then(cache => {
-//                                         cache.put(event.request.url , responseFromServer.clone())    //Response if consumed once res obj becomes null. Hence cloning
-//                                         return responseFromServer
-//                                     })
+self.addEventListener('fetch',(event)=>{
+    // console.log("[Service Worker] Fetching something ...",event)
+    event.respondWith(
+        // fetch(event.request)
+        caches
+        .match(event.request)
+        .then(responseFromCache=>{
+            if(responseFromCache)
+                return responseFromCache
+            else
+                return fetch(event.request)
+                        .then(responseFromServer => {
+                            return caches                   //if we do not return api data intercepted here is not sent to the componenets/html
+                                    .open(dynamicCacheName)
+                                    .then(cache => {
+                                        cache.put(event.request.url , responseFromServer.clone())    //Response if consumed once res obj becomes null. Hence cloning
+                                        return responseFromServer
+                                    })
 
-//                         })
-//                         .catch(err => {
-//                             return caches.open(staticCacheName)
-//                                          .then(cache => {
-//                                              return cache.match('/offline.html')
-//                                          })
-//                         })
-//         })
-//         )
-// })
+                        })
+                        .catch(err => {
+                            return caches.open(staticCacheName)
+                                         .then(cache => {
+                                             return cache.match('/offline.html')
+                                         })
+                        })
+        })
+        )
+})
 
 ///Network first + Cache strategy
 // self.addEventListener("fetch", (event) => {
@@ -88,3 +88,9 @@ self.addEventListener("activate", (event) => {
 // });
 
 ///cache then network strategy.
+
+self.addEventListener('sync', function(event) {
+  if (event.tag == 'sync-new-post') {
+    event.waitUntil(doSomeStuff());
+  }
+});
