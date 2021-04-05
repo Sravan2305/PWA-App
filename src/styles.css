@@ -100,3 +100,22 @@ height: 2.5rem;
 .add_to_home_screen:active{
     transform: scale(0.8);
 }
+
+
+.allow_notifications{
+    height: 2.5rem;
+    background-color: rgb(5, 175, 218);
+    position: fixed;
+    bottom: 2rem;
+    right: 6rem;
+    color: azure;
+    font-weight: 800;
+    border: none;
+    font-size: 0.9rem;
+    transition: transform ease-in .1s;
+}
+ .allow_notifications:active {
+transform: scale(0.9);
+outline: none;
+
+}

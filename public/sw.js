@@ -94,3 +94,23 @@ self.addEventListener('sync', function(event) {
     event.waitUntil(doSomeStuff());
   }
 });
+
+self.addEventListener('notificationclick' , (event)=>{
+  const notification = event.notification
+  const action = event.action
+
+  console.log("Notification is ")
+  console.log(notification)
+  if(action === 'Accept'){
+    console.log("User Accepted the notification")
+  }
+  else{
+    console.log("User closed the notification")
+  
+  }
+  notification.close()
+})
+
+self.addEventListener('notificationclose' , (event)=>{
+  console.log("user swiped and closed our notification",event)
+})

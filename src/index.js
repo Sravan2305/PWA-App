@@ -91,4 +91,40 @@ post.addEventListener('click' , ()=>{
                 post_data()
 })
 
+if('Notification' in window)
+{
+    const allow_notifications = document.querySelector('#allow_notifications')
+    allow_notifications.addEventListener('click',()=>{
+        Notification.requestPermission((result)=>{
+            console.log("user Choice is "+result)
+            if(result != 'granted')
+            console.log("User declined Notifications")
+            else
+            // new Notification('Succesfully Enabled',{body:"Notifications are enabled succesfully"})  //from JS
+            if('serviceWorker' in navigator)
+            navigator
+            .serviceWorker
+            .ready
+            .then(activeSW=>{
+                    const NotificationOptions = {
+                        body:"Notifications are enabled succesfully",
+                        icon:'./images/icon-192x192.png',
+                        image:'./images/icon-512x512.png',
+                        //badge,vibration
+                        //tag  - similar to id. Notificatiosn with same id wot be stacked . Only latest Noti is shown
+                        //renotify::true allows to notify although same tag
+                        actions:[
+                            {action:'Accept' , title:'Yes' , icon:'./images/icon-192x192.png'},
+                            {action:'Decline' , title:'No' },
+                        ]
+                    }
+                    activeSW.showNotification('Succesfully Enabled Notifications',NotificationOptions)
+            })
+
+        })
+    })
+
+}
+
+
 
